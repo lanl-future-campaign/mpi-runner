@@ -35,6 +35,16 @@ project (MPI)
 set (CXX_STANDARD_REQUIRED FALSE)
 set (CMAKE_CXX_STANDARD 11)
 
+# setup cache variables for ccmake
+set (CMAKE_PREFIX_PATH "" CACHE STRING "External dependencies path")
+if (NOT CMAKE_BUILD_TYPE)
+    set (CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING
+            "Choose the type of build." FORCE)
+    set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS
+            "Debug" "Release" "RelWithDebInfo"
+            "MinSizeRel")
+endif ()
+
 add_executable (main main.cpp)
 
 set (CMAKE_THREAD_PREFER_PTHREAD TRUE)
